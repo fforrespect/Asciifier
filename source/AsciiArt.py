@@ -1,11 +1,11 @@
 from PIL import Image
 
-greys = (' ', '.', '-', '"', 'r', '/', '>', ')', '[', 'I', 'Y', 'Z', 'h', '#', '8', '@')
+GREYS = (' ', '.', '-', '"', 'r', '/', '>', ')', '[', 'I', 'Y', 'Z', 'h', '#', '8', '@')
 
 
 # in_place: Defines whether the function should just print the ascii art as its processed,
 #           or if it should return the resultant string
-def image_to_string(image_file_path, in_place=True, colours=greys):
+def image_to_string(image_file_path, in_place=True, colours=GREYS):
     image = Image.open(image_file_path)
     loaded_image = image.load()
 
