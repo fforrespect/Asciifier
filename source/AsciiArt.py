@@ -4,7 +4,7 @@ import numpy as np
 greys = (' ', '.', '-', '"', 'r', '/', '>', ')', '[', 'I', 'Y', 'Z', 'h', '#', '8', '@')
 
 
-def image_to_string(image_file_path, colours=greys):
+def image_to_string(image_file_path, in_place=True, colours=greys):
     """
     Convert an image to ASCII art.
 
@@ -21,7 +21,10 @@ def image_to_string(image_file_path, colours=greys):
     greyscale = len(image_array.shape) == 2
 
     colour_scale = len(colours) - 1
-    normalised_image = (image_array.mean(axis=2) / 255 * colour_scale if not greyscale
-                        else image_array / 255 * colour_scale).astype(int)
+    normalised_image = (image_array.mean(axis=2) / 255 * colour_scale if not greyscale else image_array / 255 * colour_scale).astype(int)
 
-    return "\n".join("".join(colours[val] * 2 for val in row) for row in normalised_image)
+    if in_place:
+        for row in normalised_image:
+            print("".join(colours[val] * 2 for val in row))
+    else:
+        return "\n".join("".join(colours[val] * 2 for val in row) for row in normalised_image)
