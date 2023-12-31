@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: asciifier
+Version: 1.0.0
+Summary: Converts an Image file into ASCII Art
+Author: fforrespect
+Requires-Dist: Pillow==10.1.0
+Requires-Dist: numpy==1.26.2
+Requires-Dist: requests==2.31.0
