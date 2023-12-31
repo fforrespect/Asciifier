@@ -1,25 +1,34 @@
+import requests
 from PIL import Image
 from numpy import array, ndarray
 
 greys = (' ', '.', '-', '"', 'r', '/', '>', ')', '[', 'I', 'Y', 'Z', 'h', '#', '8', '@')
+IMAGE_STORE_FP = "../imageStore/image.jpg"
 
 
-def image_to_string(file_path, in_place=True, colours=greys) -> str | None:
+def image_to_string(filepath: str, in_place: object = True, colours: list[str] = greys) -> str | None:
     """
     Convert an image to ASCII art.
     
-    :param file_path: Path to the image file.
-    :type file_path: str
+    :param filepath: Path to the image file.
+    :type filepath: str
     :param in_place: If True, prints the ASCII art. If False, returns the ASCII art as a string.
     :type in_place: bool
-    :param colours: A tuple of characters representing greyscale values.
-    :type colours: tuple
+    :param colours: A list of characters representing greyscale values.
+    :type colours: list[str]
     
     :returns ASCII art representation of the image (if in_place is False)
     :rtype str
     """
 
-    image: Image.Image = Image.open(file_path)
+    if "https://" in filepath or "http://" in filepath:
+        response = requests.get(filepath)
+
+        with open(IMAGE_STORE_FP, "wb") as f:
+            f.write(response.content)
+        filepath = IMAGE_STORE_FP
+
+    image: Image.Image = Image.open(filepath)
     # The following line may throw a warning, there's no reason it should - it will always work fine
     # noinspection PyTypeChecker
     image_array: ndarray = array(image)
