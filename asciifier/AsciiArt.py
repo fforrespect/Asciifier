@@ -2,11 +2,10 @@ import requests
 from PIL import Image
 from numpy import array, ndarray
 
-greys = (' ', '.', '-', '"', 'r', '/', '>', ')', '[', 'I', 'Y', 'Z', 'h', '#', '8', '@')
-IMAGE_STORE_FP = "../imageStore/image.jpg"
+import _constants
 
 
-def image_to_string(filepath: str, in_place: object = True, colours: list[str] = greys) -> str | None:
+def image_to_string(filepath: str, in_place: object = True, colours: list[str] = _constants.GREYS) -> str | None:
     """
     Convert an image to ASCII art.
     
@@ -24,9 +23,9 @@ def image_to_string(filepath: str, in_place: object = True, colours: list[str] =
     if "https://" in filepath or "http://" in filepath:
         response = requests.get(filepath)
 
-        with open(IMAGE_STORE_FP, "wb") as f:
+        with open(_constants.IMAGE_STORE_FP, "wb") as f:
             f.write(response.content)
-        filepath = IMAGE_STORE_FP
+        filepath = _constants.IMAGE_STORE_FP
 
     image: Image.Image = Image.open(filepath)
     image_array: ndarray = array(image)
