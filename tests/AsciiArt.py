@@ -2,7 +2,7 @@ from asciifier import AsciiArt
 
 
 def test_image_to_asciiart_string_converter():
-    assert AsciiArt.image_to_string(
+    assert AsciiArt.image(
         filepath="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/rose.png",
         in_place=False,
         colours=[' ', '.', '-', '"', 'r', '/', '>', ')', '[', 'I', 'Y', 'Z', 'h', '#', '8', '@']
