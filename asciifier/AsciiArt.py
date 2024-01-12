@@ -1,4 +1,5 @@
-import requests
+from requests import get
+from io import BytesIO
 from PIL import Image
 from numpy import array, ndarray
 
@@ -20,14 +21,11 @@ def image_to_string(filepath: str, in_place: bool = True, colours: list[str] = _
     :rtype str
     """
 
-    if "https://" in filepath or "http://" in filepath:
-        response = requests.get(filepath)
+    image: Image.Image = \
+        Image.open(BytesIO(get(filepath).content)) \
+        if "https://" in filepath or "http://" in filepath \
+        else Image.open(filepath)
 
-        with open(_constants.IMAGE_STORE_FP, "wb") as f:
-            f.write(response.content)
-        filepath = _constants.IMAGE_STORE_FP
-
-    image: Image.Image = Image.open(filepath)
     image_array: ndarray = array(image)
     greyscale: bool = len(image_array.shape) == 2
 
