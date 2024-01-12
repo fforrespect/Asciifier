@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 setup(
     name="asciifier",
     packages=find_packages(include=["asciifier"]),
-    version="1.0.0",
+    version="1.0.1",
     description="Converts an Image file into ASCII Art",
     author="jaiveer chadda",
     author_email='jaiveer.chadda@gmail.com',

@@ -3,7 +3,7 @@ from io import BytesIO
 from PIL import Image
 from numpy import array, ndarray
 
-import _constants
+from asciifier import _constants
 
 
 def image_to_string(filepath: str, in_place: bool = True, colours: list[str] = _constants.GREYS) -> str | None:

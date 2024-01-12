@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "asciifier"
-version = "1.0.0"
+version = "1.0.1"
 description = "A tool to create ASCII art"
 authors = ["Jaiveer Chadda <jaiveer.chadda@gmail.com>"]
 license = "MIT"
