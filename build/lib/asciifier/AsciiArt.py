@@ -3,10 +3,10 @@ from io import BytesIO
 from PIL import Image
 from numpy import array, ndarray
 
-import _constants
+DEFAULT_GREY_VALUES = (' ', '.', '-', '"', 'r', '/', '>', ')', '[', 'I', 'Y', 'Z', 'h', '#', '8', '@')
 
 
-def image_to_string(filepath: str, in_place: bool = True, colours: list[str] = _constants.GREYS) -> str | None:
+def image(filepath: str, in_place: bool = True, colours: tuple[str, ...] = DEFAULT_GREY_VALUES) -> str | None:
     """
     Convert an image to ASCII art.
     
@@ -15,18 +15,18 @@ def image_to_string(filepath: str, in_place: bool = True, colours: list[str] = _
     :param in_place: If True, prints the ASCII art. If False, returns the ASCII art as a string.
     :type in_place: bool
     :param colours: A list of characters representing greyscale values.
-    :type colours: list[str]
-    
-    :returns ASCII art representation of the image (if in_place is False)
-    :rtype str
+    :type colours: tuple[str, ...]
+
+    :returns: ASCII art representation of the image if in_place is False, else None (prints the result to console)
+    :rtype: str | None
     """
 
-    image: Image.Image = \
+    image_obj: Image.Image = \
         Image.open(BytesIO(get(filepath).content)) \
         if "https://" in filepath or "http://" in filepath \
         else Image.open(filepath)
 
-    image_array: ndarray = array(image)
+    image_array: ndarray = array(image_obj)
     greyscale: bool = len(image_array.shape) == 2
 
     colour_scale: int = len(colours) - 1
