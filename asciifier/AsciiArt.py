@@ -6,7 +6,7 @@ from numpy import array, ndarray
 from asciifier import _constants
 
 
-def image(filepath: str, in_place: bool = True, colours: list[str] = _constants.GREYS) -> str | None:
+def image(filepath: str, in_place: bool = True, colours: tuple[str, ...] = _constants.GREYS) -> str | None:
     """
     Convert an image to ASCII art.
     
@@ -15,7 +15,7 @@ def image(filepath: str, in_place: bool = True, colours: list[str] = _constants.
     :param in_place: If True, prints the ASCII art. If False, returns the ASCII art as a string.
     :type in_place: bool
     :param colours: A list of characters representing greyscale values.
-    :type colours: list[str]
+    :type colours: tuple[str, ...]
 
     :returns: ASCII art representation of the image if in_place is False, else None (prints the result to console)
     :rtype: str | None
