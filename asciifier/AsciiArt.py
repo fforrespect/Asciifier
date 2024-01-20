@@ -3,10 +3,10 @@ from io import BytesIO
 from PIL import Image
 from numpy import array, ndarray
 
-from asciifier import _constants
+DEFAULT_GREY_VALUES = (' ', '.', '-', '"', 'r', '/', '>', ')', '[', 'I', 'Y', 'Z', 'h', '#', '8', '@')
 
 
-def image(filepath: str, in_place: bool = True, colours: tuple[str, ...] = _constants.GREYS) -> str | None:
+def image(filepath: str, in_place: bool = True, colours: tuple[str, ...] = DEFAULT_GREY_VALUES) -> str | None:
     """
     Convert an image to ASCII art.
     
